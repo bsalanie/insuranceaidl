@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "insuranceaidl"
+  site-url: "https://bsalanie.github.io/insuranceaidl"
+  description: "Testing for asymmetric information in insurance with deep learning"
+  repo-branch: main
+  repo-url: "https://github.com/bsalanie/insuranceaidl"
