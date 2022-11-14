@@ -6,6 +6,5 @@ d = { 'settings': { 'branch': 'main',
                 'git_url': 'https://github.com/bsalanie/insuranceaidl',
                 'lib_path': 'insuranceaidl'},
   'syms': { 'insuranceaidl.InsuranceAI': {},
-            'insuranceaidl.core': {'insuranceaidl.core.foo': ('core.html#foo', 'insuranceaidl/core.py')},
             'insuranceaidl.utils': { 'insuranceaidl.utils.read_data': ('utils.html#read_data', 'insuranceaidl/utils.py'),
                                      'insuranceaidl.utils.select_variables': ('utils.html#select_variables', 'insuranceaidl/utils.py')}}}
