@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Reads the data and formats it.">
+
+<title>insuranceaidl - utils</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="insuranceaidl - utils">
+<meta property="og:description" content="Reads the data and formats it.">
+<meta property="og:site-name" content="insuranceaidl">
+<meta name="twitter:title" content="insuranceaidl - utils">
+<meta name="twitter:description" content="Reads the data and formats it.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">insuranceaidl</span>
+    </a>
+  </div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">utils</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">InsuranceAI</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils.html" class="sidebar-item-text sidebar-link active">utils</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read_data" id="toc-read_data" class="nav-link active" data-scroll-target="#read_data">read_data</a></li>
+  <li><a href="#select_variables" id="toc-select_variables" class="nav-link" data-scroll-target="#select_variables">select_variables</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/bsalanie/insuranceaidl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">utils</h1>
+</div>
+
+<div>
+  <div class="description">
+    Reads the data and formats it.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<p>We start by loading the dataset from the FFSA 1989 survey — only beginning drivers. The data has 6,333 insurees. Each observation has 58 variables:</p>
+<ol start="0" type="1">
+<li>(AG25) whether the insuree is below 25 (1) or not (2)</li>
+<li>(AGE) the age of the insuree in years</li>
+<li>(AGEC) the age of the driver in years (9 if the driver was the insuree)</li>
+<li>(ALLE) German car: 1 yes, 0 no</li>
+<li>(AMER) American car: 1 yes, 0 no</li>
+<li>(ANCC) how old the driver license is (1 for less than 3, 2 for more, 9 incomplete, 0 missing)</li>
+<li>(CFDO) the nature of the deductible (1 fixed, 2 proportional, 0 no deductible)</li>
+<li>(CFVO) whether the theft guarantee comes with a deductible (1 yes, 2 no, 9 not insured against theft)</li>
+<li>(CGAR) compulsory insurance (0 is basic, 1 with theft, 2 with fire, 3 =1+2, 4 with windows, 5=1+4, 6=2+4, 7=1+2+4)</li>
+<li>(CGDO) comprehensive insurance (0 none, 1 no deductible, 2 with deductible except if collision, 3 with deductible always, 4 others)</li>
+<li>(CIDA) percentage at fault for claims smaller than 25,000FF: 0 = 0%, 1=25%, 2=50%, 3=75%, 4=100%, 9=incomplete, 99=missing.</li>
+<li>(CITR) Citroën car: 1 yes, 0 no</li>
+<li>(CODC) driver is the insured (1 yes, 2 no, 9 ncomplete, 0 missing)</li>
+<li>(CODE) accident (0 if none, 30+ if an accident)</li>
+<li>(CRES) responsibility (1 total, 2 none, 3 partial, 0 missing, 9 incomplete)</li>
+<li>(CSOC) insurance company code</li>
+<li>(DCIR) year the car started circulating</li>
+<li>(DEPT) département where the car is registered</li>
+<li>(DNAI) year of birth of insuree</li>
+<li>(FDOS) claim processing code (1 done, 2 in process, 0 missing)</li>
+<li>(FRAN) 1 if French car but not Citroën-Peugeot-Renault, 0 otherwise</li>
+<li>(GROUP) group: from 1 to 6</li>
+<li>(GSIN) guarantee activated by claim (1 compulsory or comprehensive, 2 theft, 3 fire, 4 windows, 9 missing, 0 ???)</li>
+<li>(HOM) 1 if insuree is male, otherwise 0</li>
+<li>(INDACCI) 1 if no accident at fault, 0 otherwise</li>
+<li>(ITAL) Italian car: 1 yes, 0 no</li>
+<li>(KVEH) number of cars in claim, including the insuree’s (0 missing, 9 incomplete)</li>
+<li>(LIEU) département of claim (99 incomplete, 0 missing)</li>
+<li>(MFDO) deductible as percentage of claim value, or as amount if fixed (0 missing)</li>
+<li>(MFVO) deductible for theft (0 missing)</li>
+<li>(MIDA) reimbursement for claim (0 missing)</li>
+<li>(MODR) how the claim was paid (1 interinsurers, 2 no, 0 missing)</li>
+<li>(MSIN) the total amount of the claim (0 missing)</li>
+<li>(MTRC) the amount covered by the compulsory guarantee (0 missing)</li>
+<li>(NATS) the nature of the claim (1 material, 2 personal or both, 0 missing)</li>
+<li>(NBACCI) the number of claims at fault</li>
+<li>(NORD) an identifier</li>
+<li>(NSEQ) another one</li>
+<li>(PBAS) the basic premium (= [45]/[51]*100)</li>
+<li>(PEUG) Peugeot car: 1 yes, 0 no</li>
+<li>(PFIS) car fiscal horsepowers (3 a 8)</li>
+<li>(PNET) total premium, after bonus/malus, net of taxes</li>
+<li>(POID) percentage of the year covered by insurance</li>
+<li>(PROF) occupation (1 shopowner or crafts, 2 salaried, 3 civil servant, 4 farmer, 5 others, 6 retired, 7 other w/o a job, 8 unknown)</li>
+<li>(QSIN) number of claims in the year (9 missing)</li>
+<li>(RCDR) premium for compulsory coverage after bonus, net of taxes</li>
+<li>(REG) region (1 is Bourgogne-Franche Comté, 2 is Bassin Parisien W, 3 is PACA, 4 is Centre W, 5 is Grand W, 6 is SW, 7 is Ile de France, 8 is Rhône-Alpes, 9 is Est, 10 is Nord)</li>
+<li>(RENA) Renault car: 1 yes, 0 no</li>
+<li>(SCLA) class of car (how expensive, 0 to 4)</li>
+<li>(SEXE) gender (1 male, 2 female)</li>
+<li>(SGRP) real group of the car (4 to 13)</li>
+<li>(TMAJ) bonus/malus (basis 100)</li>
+<li>(TRACIR) based on [16]; is 11 if car started circulating before 1978, 10 if in 1978 or 1979, else 1989-[16]</li>
+<li>(TRAGE) age category, based on [2]. Is 0 if [2] is 18 or 19, 1 to 4 if 20 to 23, 5 if 24 or 25, 6 if 26 to 30, 7 if 31 to 45, then 8.</li>
+<li>(TRAPBAS) category of basic premium, based on [38]. 1 to 6 with breaks at 1,100; 1,400; 1,800; 2,300; and 2,900</li>
+<li>(TRES) percentage at fault if shared responsibility (0 missing)</li>
+<li>(USAG) main usage of car; 1: work, 2: home-to-work, 3: private use, 4: unknown</li>
+</ol>
+<hr>
+<p><a href="https://github.com/bsalanie/insuranceaidl/blob/main/insuranceaidl/utils.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="read_data" class="level3">
+<h3 class="anchored" data-anchor-id="read_data">read_data</h3>
+<blockquote class="blockquote">
+<pre><code> read_data (dataset:str)</code></pre>
+</blockquote>
+<p>Reads the dataset selected and returns a clean Pandas dataframe</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dataset</td>
+<td>str</td>
+<td>“j88” or “jpropre”</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>DataFrame</strong></td>
+<td><strong>a clean data frame</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/bsalanie/insuranceaidl/blob/main/insuranceaidl/utils.py#L67" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="select_variables" class="level3">
+<h3 class="anchored" data-anchor-id="select_variables">select_variables</h3>
+<blockquote class="blockquote">
+<pre><code> select_variables (data:pandas.core.frame.DataFrame)</code></pre>
+</blockquote>
+<p>returns the <code>y</code> variables, the weights, and the <code>X</code> covariates</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data</td>
+<td>DataFrame</td>
+<td>the Pandas data frame</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>typing.Tuple[pandas.core.series.Series, pandas.core.series.Series, pandas.core.series.Series, pandas.core.frame.DataFrame]</strong></td>
+<td><strong><code>y1, y2, w, X</code></strong></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
